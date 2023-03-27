@@ -12,5 +12,11 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
+# vim temporary files
+*.swp
+
+# coverage report
+coverage.txt
+
 # Dependency directories (remove the comment below to include it)
 # vendor/
