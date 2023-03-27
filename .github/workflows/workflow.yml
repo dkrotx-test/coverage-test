@@ -7,5 +7,12 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
     steps:
+    - uses: actions/checkout@master
+    - name: Setup Go environment
+      uses: actions/setup-go@v4.0.0
+    - name: Generate coverage report
+      run: make unittest_cov
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
+      with:
+        files: coverage.txt
