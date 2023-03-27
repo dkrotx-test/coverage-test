@@ -12,6 +12,8 @@ var operators = map[string]int{
 	"/": 2,
 }
 
+const _errOnlyUnaryMinusAllowed = "Only '-' allowed as unary sing"
+
 func isOperator(s string) bool {
 	_, found := operators[s]
 	return found
@@ -32,7 +34,7 @@ func ParseString(s string) ([]string, error) {
 		if isOperator(tok) {
 			if i == 0 || (!isNumber(tokens[i-1]) && tokens[i-1] != ")") {
 				if tok != "-" {
-					return nil, errors.New("Only '-' allowed as unary sing")
+					return nil, errors.New(_errOnlyUnaryMinusAllowed)
 				}
 				unary = true
 			}

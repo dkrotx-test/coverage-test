@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"testing"
 )
 
@@ -32,4 +33,11 @@ func TestParseString(t *testing.T) {
 		}
 		assert.Equal(test.expect, arr, m)
 	}
+}
+
+func TestOnlyUnaryMinusIsAllowed(t *testing.T) {
+	res, err := ParseString("+1 - 3")
+	require.Error(t, err)
+	require.Empty(t, res, "result should be empty when error")
+	assert.ErrorContains(t, err, _errOnlyUnaryMinusAllowed)
 }
